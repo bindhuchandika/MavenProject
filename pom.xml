@@ -3,6 +3,10 @@
   <groupId>Qspi</groupId>
   <artifactId>MavenPro</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+	<properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
   <dependencies>
 	  <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
@@ -35,7 +39,47 @@
     <version>7.1.0</version>
     <scope>test</scope>
 </dependency>
-
-  </dependencies>
-
+</dependencies>
+<profiles>
+ <profile>
+  <id>smokeTest</id>
+   <build>
+  <pluginManagement>
+ <plugins>
+					  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M8</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+  
+</plugins>
+			  </pluginManagement>
+		  </build>
+	  </profile>
+	   <profile>
+		  <id>regressionTest</id>
+		  <build>
+			  <pluginManagement>
+				  <plugins>
+					  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M8</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+     </plugins>
+   </pluginManagement>
+     </build>
+      </profile></profiles>
 </project>
